@@ -1,10 +1,10 @@
-// What the agent may touch. Agents act only in tabs of the "AntiGem" tab group (tabs they open go there; the user can
+// What the agent may touch. Agents act only in tabs of the "LytsoCoder" tab group (tabs they open go there; the user can
 // drag tabs in or out) and in popups those tabs open. Any other tab needs the user's OK in a confirm window, after
 // which it joins the group. Sites on the blocklist (banking, payments, password managers… editable in the popup) are
 // never opened, read or controlled. Browser pages (chrome://, other extensions, the Web Store) cannot be controlled.
 import { CmdError, clip } from './util.js';
 
-export const GROUP_TITLE = 'AntiGem';
+export const GROUP_TITLE = 'LytsoCoder';
 const GROUP_COLOR = 'blue';
 
 export const DEFAULT_BLOCKLIST = [
@@ -110,7 +110,7 @@ export function blockedReason(url) {
   if (host === 'chromewebstore.google.com' || (host === 'chrome.google.com' && u.pathname.startsWith('/webstore'))) return 'the Web Store cannot be controlled';
   for (const e of list) {
     if (!e || e === 'file://') continue;
-    if (host === e || host.endsWith(`.${e}`)) return `${e} is on the AntiGem blocklist`;
+    if (host === e || host.endsWith(`.${e}`)) return `${e} is on the LytsoCoder blocklist`;
   }
   return null;
 }
@@ -119,7 +119,7 @@ export function assertUrlAllowed(url) {
   const why = blockedReason(url);
   if (why) {
     throw new CmdError(
-      `Not allowed: ${clip(url, 120)} — ${why}. The agent may not open, read or control it; the user can change the blocklist in the AntiGem extension popup.`,
+      `Not allowed: ${clip(url, 120)} — ${why}. The agent may not open, read or control it; the user can change the blocklist in the LytsoCoder extension popup.`,
       'blocked',
     );
   }
@@ -141,7 +141,7 @@ export async function isOurGroup(gid) {
   const g = await groupInfo(gid);
   if (!g) return false;
   if (mem.groups.has(gid)) return true;
-  // a group the user named AntiGem counts too (e.g. made again after closing ours)
+  // a group the user named LytsoCoder counts too (e.g. made again after closing ours)
   if ((g.title ?? '').trim().toLowerCase() === GROUP_TITLE.toLowerCase()) {
     mem.groups.add(gid);
     save();
@@ -156,7 +156,7 @@ export async function isAllowed(tab) {
   return isOurGroup(tab.groupId);
 }
 
-/** The AntiGem group of a window, if any. */
+/** The LytsoCoder group of a window, if any. */
 async function groupInWindow(windowId) {
   const groups = await chrome.tabGroups.query({ windowId });
   for (const g of groups) if (mem.groups.has(g.id)) return g.id;
@@ -164,7 +164,7 @@ async function groupInWindow(windowId) {
   return null;
 }
 
-/** Puts a tab into the AntiGem group of its window (made when missing); popup windows cannot group: adopted. */
+/** Puts a tab into the LytsoCoder group of its window (made when missing); popup windows cannot group: adopted. */
 export async function addToGroup(tabId) {
   const tab = await chrome.tabs.get(tabId);
   const win = await chrome.windows.get(tab.windowId);
@@ -184,7 +184,7 @@ export async function addToGroup(tabId) {
   save();
 }
 
-/** Window new agent tabs open in: the one with the AntiGem group, else the last focused normal window. */
+/** Window new agent tabs open in: the one with the LytsoCoder group, else the last focused normal window. */
 export async function targetWindow() {
   for (const gid of mem.groups) {
     const g = await groupInfo(gid);
@@ -321,7 +321,7 @@ export function askUser(info) {
 }
 
 /**
- * The tab, if the agent may use it for `purpose`: tabs outside the AntiGem group (or revoked ones) need the user's OK,
+ * The tab, if the agent may use it for `purpose`: tabs outside the LytsoCoder group (or revoked ones) need the user's OK,
  * after which they join the group. `page` = the agent reads or acts on the page itself (blocklist applies).
  */
 export async function ensureTab(tabId, purpose, page = true) {
@@ -329,7 +329,7 @@ export async function ensureTab(tabId, purpose, page = true) {
   try {
     tab = await chrome.tabs.get(tabId);
   } catch {
-    throw new CmdError(`No tab with id ${tabId}: it was closed. Use browser_list_tabs for the open AntiGem tabs.`, 'no_tab');
+    throw new CmdError(`No tab with id ${tabId}: it was closed. Use browser_list_tabs for the open LytsoCoder tabs.`, 'no_tab');
   }
   const ok = await isAllowed(tab);
   if (!ok || mem.revoked.has(tabId)) {
@@ -337,14 +337,14 @@ export async function ensureTab(tabId, purpose, page = true) {
     const allow = await askUser({
       kind: 'tab',
       title: mem.revoked.has(tabId) ? 'Let the agent control this tab again?' : 'Let the agent use this tab?',
-      message: `An AntiGem agent wants to ${purpose} a tab outside the AntiGem tab group. If you allow it, the tab joins the group and the agent can use it until you drag it out of the group.`,
+      message: `An LytsoCoder agent wants to ${purpose} a tab outside the LytsoCoder tab group. If you allow it, the tab joins the group and the agent can use it until you drag it out of the group.`,
       detail: `${clip(tab.title || 'Untitled', 90)}\n${clip(tab.url || tab.pendingUrl || '', 140)}`,
       allowLabel: 'Allow',
       denyLabel: 'Deny',
     });
     if (!allow) {
       throw new CmdError(
-        `The user did not allow the agent to use tab ${tabId} (it is outside the AntiGem tab group). Work in AntiGem tabs: browser_open_url opens pages there.`,
+        `The user did not allow the agent to use tab ${tabId} (it is outside the LytsoCoder tab group). Work in LytsoCoder tabs: browser_open_url opens pages there.`,
         'denied',
       );
     }

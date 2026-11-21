@@ -1,5 +1,5 @@
 // The commands VS Code may send (generic primitives; the browser_mcp tools are built from them on the VS Code side).
-// Every command that touches a tab goes through policy.ensureTab (AntiGem tab group or the user's OK, blocklist), and
+// Every command that touches a tab goes through policy.ensureTab (LytsoCoder tab group or the user's OK, blocklist), and
 // raw DevTools access is limited to input events.
 import { CmdError, VERSION, b64ToBytes, bytesToB64, clip, sleep, tabIdOf } from './util.js';
 import * as policy from './policy.js';
@@ -447,7 +447,7 @@ export async function handle(command, p) {
       const id = tabIdOf(p.tabId);
       if (id === null) {
         const cur = await policy.currentTab();
-        if (!cur) throw new CmdError('No AntiGem tab is open. Open a page with browser_open_url (it opens in the AntiGem tab group).', 'no_tab');
+        if (!cur) throw new CmdError('No LytsoCoder tab is open. Open a page with browser_open_url (it opens in the LytsoCoder tab group).', 'no_tab');
         return tabSummary(cur, cur.id);
       }
       const t = await policy.ensureTab(id, p.purpose || 'use', !!p.page);
@@ -590,7 +590,7 @@ export async function handle(command, p) {
         let t;
         if (id === null) {
           t = await policy.currentTab();
-          if (!t) throw new CmdError('No AntiGem tab is open. Open a page with browser_open_url first.', 'no_tab');
+          if (!t) throw new CmdError('No LytsoCoder tab is open. Open a page with browser_open_url first.', 'no_tab');
           t = await policy.ensureTab(t.id, 'control', true);
         } else t = await pageTab(p, 'control');
         lock.on = true;
@@ -683,8 +683,8 @@ export async function handle(command, p) {
         // loosening the blocklist from VS Code needs the user's OK in the browser
         const ok = await policy.askUser({
           kind: 'blocklist',
-          title: 'Remove sites from the AntiGem blocklist?',
-          message: 'AntiGem in VS Code asks to remove these entries from the blocklist. Agents could then open, read and control them.',
+          title: 'Remove sites from the LytsoCoder blocklist?',
+          message: 'LytsoCoder in VS Code asks to remove these entries from the blocklist. Agents could then open, read and control them.',
           detail: removed.join('\n'),
           allowLabel: 'Remove them',
           denyLabel: 'Keep them blocked',

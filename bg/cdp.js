@@ -1,6 +1,6 @@
 // chrome.debugger (DevTools protocol) per tab: trusted input, screenshots, script runs, console / network recording,
 // page dialogs, file inputs and view mode. Attached the first time the agent uses a tab (Chrome shows its "started
-// debugging this browser" bar meanwhile) and detached when the tab leaves the AntiGem group or on Disconnect.
+// debugging this browser" bar meanwhile) and detached when the tab leaves the LytsoCoder group or on Disconnect.
 import { CmdError, sleep } from './util.js';
 import { blockedReason, revoke } from './policy.js';
 import { emit } from './native.js';

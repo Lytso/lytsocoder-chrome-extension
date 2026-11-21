@@ -1,4 +1,4 @@
-// The toolbar popup: connection status, Disconnect/Connect, the AntiGem tab group, the blocklist.
+// The toolbar popup: connection status, Disconnect/Connect, the LytsoCoder tab group, the blocklist.
 const $ = (id) => document.getElementById(id);
 const ask = (op, extra = {}) => chrome.runtime.sendMessage({ antigem: 'popup', op, ...extra });
 
@@ -10,8 +10,8 @@ function render(s) {
   }
   const c = s.connection;
   const map = {
-    connected: ['ok', 'Connected to VS Code', 'Your AntiGem agents can use the AntiGem tabs.'],
-    host: ['warn', 'Waiting for VS Code', c.error || 'Open VS Code with the AntiGem extension.'],
+    connected: ['ok', 'Connected to VS Code', 'Your LytsoCoder agents can use the LytsoCoder tabs.'],
+    host: ['warn', 'Waiting for VS Code', c.error || 'Open VS Code with the LytsoCoder extension.'],
     connecting: ['warn', 'Connecting…', ''],
     error: ['err', 'Not connected', c.error || ''],
     off: ['', 'Disconnected', 'You turned the connection off. Agents cannot use this browser.'],
@@ -34,7 +34,7 @@ function render(s) {
   if (!s.tabs.length) {
     const li = document.createElement('li');
     li.className = 'muted';
-    li.textContent = 'No AntiGem tabs open.';
+    li.textContent = 'No LytsoCoder tabs open.';
     ul.appendChild(li);
   }
   if (document.activeElement !== $('blocklist')) $('blocklist').value = s.blocklist.join('\n');

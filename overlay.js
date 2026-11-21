@@ -1,4 +1,4 @@
-// AntiGem agent overlay (content script, this extension's isolated world, injected on demand into AntiGem tabs).
+// LytsoCoder agent overlay (content script, this extension's isolated world, injected on demand into LytsoCoder tabs).
 // Port of the app's BrowserAgentIndicator + BrowserAgentLock overlay: a glowing frame while an agent works, its cursor
 // travelling to each click with a ripple and a short caption, and — while the agent holds the lock — a layer that
 // keeps the user's mouse and keyboard off the page plus an "AI controls this tab · Unlock" pill.
@@ -7,7 +7,7 @@
   if (window.__antigemOverlay) return;
   window.__antigemOverlay = true;
 
-  const ACCENT = '#D97757';
+  const ACCENT = '#00E5FF';
   const LINGER_MS = 6000;
   const host = document.createElement('antigem-agent-overlay');
   host.style.cssText = 'all:initial;position:fixed;inset:0;z-index:2147483647;pointer-events:none;display:block;contain:strict;';

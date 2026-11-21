@@ -1,4 +1,4 @@
-// A question from the service worker (an agent wants a tab outside the AntiGem group, or VS Code wants to shorten the
+// A question from the service worker (an agent wants a tab outside the LytsoCoder group, or VS Code wants to shorten the
 // blocklist). Closing the window or waiting 2 minutes counts as Deny.
 const id = location.hash.slice(1);
 const $ = (x) => document.getElementById(x);

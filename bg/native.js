@@ -1,4 +1,4 @@
-// The connection to VS Code: Chrome native messaging to com.antigem.browser_bridge (the AntiGem bridge binary in
+// The connection to VS Code: Chrome native messaging to com.antigem.browser_bridge (the LytsoCoder bridge binary in
 // --native-host mode), which relays to the VS Code extension's per-user socket. VS Code sends {id, command, payload}
 // and gets {id, success, result | error}; we also send hello, pong and events. Nothing else can reach this channel:
 // only extensions listed in the host manifest's allowed_origins may start the host, and this extension has no
@@ -107,9 +107,9 @@ export function connect() {
 }
 
 function hostError(err) {
-  if (/not found/i.test(err)) return 'The AntiGem native host is not registered for this browser. In VS Code: AntiGem → Settings → Browser → Register with Chrome.';
+  if (/not found/i.test(err)) return 'The LytsoCoder native host is not registered for this browser. In VS Code: LytsoCoder → Settings → Browser → Register with Chrome.';
   if (/forbidden/i.test(err)) return 'The native host does not allow this extension id (re-register from VS Code: Settings → Browser).';
-  if (/exited/i.test(err)) return 'The AntiGem native host stopped (is the AntiGem VS Code extension installed? Re-register from Settings → Browser).';
+  if (/exited/i.test(err)) return 'The LytsoCoder native host stopped (is the LytsoCoder VS Code extension installed? Re-register from Settings → Browser).';
   return err || 'The native host disconnected';
 }
 

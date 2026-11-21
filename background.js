@@ -1,4 +1,4 @@
-// AntiGem Browser Bridge — service worker. Wires the native-messaging channel to VS Code (bg/native.js), the command
+// LytsoCoder Browser Bridge — service worker. Wires the native-messaging channel to VS Code (bg/native.js), the command
 // set (bg/commands.js), the tab policy (bg/policy.js) and the DevTools sessions (bg/cdp.js).
 import * as native from './bg/native.js';
 import * as policy from './bg/policy.js';
@@ -35,7 +35,7 @@ chrome.tabs.onUpdated.addListener(async (id, info, tab) => {
     await cdp.detach(id);
   }
   if (info.groupId !== undefined && cdp.session(id) && !(await policy.isAllowed(tab))) {
-    // dragged out of the AntiGem group: the agent lets go of it
+    // dragged out of the LytsoCoder group: the agent lets go of it
     await cdp.detach(id);
     forgetTab(id);
     void chrome.tabs.sendMessage(id, { antigem: 'overlay', op: 'state', locked: false, passthrough: false, active: false }, { frameId: 0 }).catch(() => {});
@@ -120,5 +120,5 @@ chrome.runtime.onMessage.addListener((msg, sender, reply) => {
 
 native.onStateChange(() => {
   chrome.action.setBadgeText({ text: native.connectionState().status === 'connected' ? '' : '!' }).catch(() => {});
-  chrome.action.setBadgeBackgroundColor({ color: '#D97757' }).catch(() => {});
+  chrome.action.setBadgeBackgroundColor({ color: '#00E5FF' }).catch(() => {});
 });
