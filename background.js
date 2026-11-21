@@ -8,7 +8,7 @@ import { VERSION } from './bg/util.js';
 
 void native.start(handle);
 
-chrome.alarms.create('antigem-reconnect', { periodInMinutes: 0.5 });
+chrome.alarms.create('antigem-reconnect', { periodInMinutes: 1 });
 chrome.alarms.onAlarm.addListener((a) => {
   if (a.name === 'antigem-reconnect') native.tick();
 });
@@ -121,4 +121,5 @@ chrome.runtime.onMessage.addListener((msg, sender, reply) => {
 native.onStateChange(() => {
   chrome.action.setBadgeText({ text: native.connectionState().status === 'connected' ? '' : '!' }).catch(() => {});
   chrome.action.setBadgeBackgroundColor({ color: '#00E5FF' }).catch(() => {});
+  chrome.action.setBadgeTextColor?.({ color: '#04080F' })?.catch?.(() => {});
 });
