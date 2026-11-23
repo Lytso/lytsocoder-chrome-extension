@@ -17,7 +17,7 @@ The [LytsoCoder Android app](https://github.com/Lytso/LytsoCoder) does not need 
 
 ## Install
 
-You need LytsoCoder for VS Code installed first ([VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=itslytso.lytsocoder-vscode) · [Open VSX](https://open-vsx.org/extension/itslytso/lytsocoder-vscode)). The VS Code
+You need LytsoCoder for VS Code installed first ([VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=Lytso.lytsocoder-vscode) · [Open VSX](https://open-vsx.org/extension/Lytso/lytsocoder-vscode)). The VS Code
 extension carries these files and sets up the connection.
 
 This extension is not in the Chrome Web Store yet (it is not published or verified there), so Chrome installs it with
@@ -159,7 +159,7 @@ LytsoCoder comes in three parts that link to each other:
 | Project | What it is | Repository |
 |---|---|---|
 | **LytsoCoder** (Android app) | The coding agents, a Linux terminal, an editor and a browser on your phone. With **Connect to PC** it also uses the agents of a PC that runs LytsoCoder for VS Code. | [Santoshkurmi/antigem](https://github.com/Lytso/LytsoCoder) |
-| **LytsoCoder for VS Code** | The same agents and chat in a VS Code sidebar. Its **Connect phone** lets the app on your phone use them. | [Santoshkurmi/antigem_vscode_extension](https://github.com/Lytso/lytsocoder-vscode) · install: [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=itslytso.lytsocoder-vscode), [Open VSX](https://open-vsx.org/extension/itslytso/lytsocoder-vscode) |
+| **LytsoCoder for VS Code** | The same agents and chat in a VS Code sidebar. Its **Connect phone** lets the app on your phone use them. | [Lytso/lytsocoder-vscode](https://github.com/Lytso/lytsocoder-vscode) · install: [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=Lytso.lytsocoder-vscode), [Open VSX](https://open-vsx.org/extension/Lytso/lytsocoder-vscode) |
 | **LytsoCoder Browser Bridge** (Chrome extension) | Lets agents in LytsoCoder for VS Code use your real Chrome. Not needed by the Android app, which has its own browser. | [Santoshkurmi/antigem-browser-extension](https://github.com/Lytso/lytsocoder-chrome-extension) · not in the Chrome Web Store yet: installed with *Load unpacked* from LytsoCoder for VS Code |
 
 ## License
