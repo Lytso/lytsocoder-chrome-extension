@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "LytsoCoder Browser Bridge",
+  "short_name": "LytsoCoder",
+  "version": "1.0.2",
+  "description": "Connects LytsoCoder AI agents to your browser: isolated in the LytsoCoder tab group with explicit per-tab approval.",
+  "minimum_chrome_version": "120",
+  "permissions": [
+    "nativeMessaging",
+    "tabs",
+    "tabGroups",
+    "scripting",
+    "debugger",
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "LytsoCoder",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsYccS7zV89kxNqBPuFA1I7vefJCQiItgw6jSKDF64jtKfrQcjdWmZDWEhOTtUf1K+UtHl+5+fu1PrD2n7om6E8vqOn6HomcY6VBl4GfLsIiy4plVKDTjjQldtZ4u1X1IHYsDTPTbSNninCOdLndV5wVin4mBNIKYHpq6oF21d03DWkkqxuYxuvHwTx+DjXmPLmszjEKzsF70MomeJIU9a2KB8a6QWzO9rugnSG1AnxC9lZoW8qByqmFrYLIu3Bm5VuxDGhnW3Y49c6e2/qAYlkHgt3FqKZb/kIEu2qGVMQn6fuFj016aNCfzU9ZHbQt+RuzVRCPn4rqWxABiF+9a1QIDAQAB"
+}
